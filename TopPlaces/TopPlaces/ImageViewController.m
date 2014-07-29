@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIImage *image;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spiner;
 
 @end
 
@@ -41,6 +42,24 @@
 
 - (void)setImage:(UIImage *)image {
     self.imageView.image = image;
+    //self.scrollView.zoomScale = 1.0;
+    [self scaleToFit];
+    self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+    
+    // self.scrollView could be nil on the next line if outlet-setting has not happened yet
+    self.scrollView.contentSize = self.image ? self.image.size : CGSizeZero;
+    
+    [self.spiner stopAnimating];
+}
+
+- (void)scaleToFit {
+    CGFloat wscale = self.scrollView.bounds.size.width / self.imageView.image.size.width;
+    CGFloat hscale = self.scrollView.bounds.size.height / self.imageView.image.size.height;
+    if (wscale > hscale ) {
+        self.scrollView.zoomScale = wscale;
+    } else {
+        self.scrollView.zoomScale = hscale;
+    }
 }
 
 - (void)setImageURL:(NSURL *)imageURL{
@@ -54,7 +73,7 @@
     
     if (self.imageURL)
     {
-        //[self.spinner startAnimating];
+        [self.spiner startAnimating];
         
         NSURLRequest *request = [NSURLRequest requestWithURL:self.imageURL];
         

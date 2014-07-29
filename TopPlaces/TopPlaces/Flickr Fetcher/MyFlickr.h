@@ -13,6 +13,6 @@
 + (NSString *)getCountry:(NSDictionary *)place;
 + (NSDictionary *)placesByContries:(NSArray *)places;
 + (NSArray *)countrieOfPlaces:(NSDictionary *)placesByContries;
-+ (void)loadPhotoForPlace:(NSDictionary *)place maxResults:(NSUInteger)maxresults;
++ (NSArray *)sortPlaces:(NSArray *)places;
 
 @end

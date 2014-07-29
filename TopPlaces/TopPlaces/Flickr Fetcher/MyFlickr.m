@@ -35,22 +35,13 @@
     return countries;
 }
 
-+ (void)loadPhotoForPlace:(NSDictionary *)place maxResults:(NSUInteger)maxresults {
-    NSURL *url = [self URLforPhotosInPlace:[place valueForKey:FLICKR_PLACE_ID] maxResults:maxresults];
-    dispatch_queue_t photoForPlaceQ = dispatch_queue_create("Photo For Place", NULL);
-    dispatch_async(photoForPlaceQ, ^{
-        NSData *jsonResult = [NSData dataWithContentsOfURL:url];
-        NSDictionary *propertyList = [NSJSONSerialization JSONObjectWithData:jsonResult
-                                                                     options:0
-                                                                       error:NULL];
-        NSArray *photos = [propertyList valueForKeyPath:FLICKR_PLACE_NAME];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-        });
-    });
-    
-    
-    
++ (NSArray *)sortPlaces:(NSArray *)places {
+    return [places sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString *s1 = [obj1 valueForKeyPath:FLICKR_PLACE_NAME];
+        NSString *s2 = [obj2 valueForKeyPath:FLICKR_PLACE_NAME];
+        return [s1 compare:s2];
+        
+    }];
 }
 
 @end

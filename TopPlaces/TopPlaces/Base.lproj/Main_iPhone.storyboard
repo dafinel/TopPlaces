@@ -65,6 +65,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="vaB-gi-qZ1"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="inf-Ty-RoV">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="fetchPhotos" destination="o8f-fi-2U0" eventType="valueChanged" id="nVu-Qj-cnP"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yJB-De-Y7n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -113,6 +119,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ydK-Po-aEp"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="7oY-BH-J0a">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="fetchPhoto" destination="WRk-oo-meP" eventType="valueChanged" id="4Bc-kg-hOR"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0b8-rH-4h6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -130,16 +142,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pUG-X6-URC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="K56-c9-0ek">
+                                <rect key="frame" x="141" y="222" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pUG-X6-URC">
+                                <rect key="frame" x="0.0" y="64" width="320" height="366"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pUG-X6-URC" firstAttribute="leading" secondItem="2sq-Mh-GUZ" secondAttribute="leading" id="IjU-Hs-Yfc"/>
+                            <constraint firstItem="2TB-Wh-7Md" firstAttribute="top" secondItem="pUG-X6-URC" secondAttribute="bottom" constant="1" id="Jw5-8g-g4z"/>
+                            <constraint firstItem="pUG-X6-URC" firstAttribute="top" secondItem="eAk-VU-J0A" secondAttribute="bottom" id="TKU-wr-QDX"/>
+                            <constraint firstAttribute="trailing" secondItem="pUG-X6-URC" secondAttribute="trailing" id="Zhb-Pr-052"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gRb-Vc-51R"/>
                     <connections>
                         <outlet property="scrollView" destination="pUG-X6-URC" id="8NT-Bm-pVs"/>
+                        <outlet property="spiner" destination="K56-c9-0ek" id="BnQ-QP-Yf3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tgq-6j-9x6" userLabel="First Responder" sceneMemberID="firstResponder"/>

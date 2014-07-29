@@ -12,6 +12,7 @@
 
 @interface PhotoForPlaceTableViewController ()
 
+
 @end
 
 @implementation PhotoForPlaceTableViewController
@@ -27,8 +28,8 @@
 
 static int const maxresults = 50;
 
-- (void)fetchPhoto {
-   // [self.refreshControl beginRefreshing];
+- (IBAction)fetchPhoto {
+    [self.refreshControl beginRefreshing];
     NSURL *url = [FlickrFetcher URLforPhotosInPlace:[self.place valueForKey:FLICKR_PLACE_ID] maxResults:maxresults];
     dispatch_queue_t photoForPlaceQ = dispatch_queue_create("PhotoForPlace", NULL);
     dispatch_async(photoForPlaceQ, ^{
@@ -38,7 +39,7 @@ static int const maxresults = 50;
                                                                        error:NULL];
         NSArray *photos = [propertyList valueForKeyPath:FLICKR_RESULTS_PHOTOS];
         dispatch_async(dispatch_get_main_queue(), ^{
-            //[self.refreshControl endRefreshing];
+            [self.refreshControl endRefreshing];
             self.photos = photos;
         });
     });
@@ -57,7 +58,13 @@ static int const maxresults = 50;
         if ([segue.destinationViewController isKindOfClass:[ImageViewController class]]) {
             ImageViewController *ivc = (ImageViewController *)segue.destinationViewController;
             ivc.imageURL = [FlickrFetcher URLforPhoto:self.photos[indexPath.row] format:FlickrPhotoFormatLarge];
-            ivc.title =  [self.photos[indexPath.row] valueForKeyPath:FLICKR_PHOTO_TITLE];
+            if(![[self.photos[indexPath.row] valueForKeyPath:FLICKR_PHOTO_TITLE] isEqualToString:@""]) {
+                ivc.title =  [self.photos[indexPath.row] valueForKeyPath:FLICKR_PHOTO_TITLE];
+            } else if (![[self.photos[indexPath.row] valueForKeyPath:FLICKR_PHOTO_DESCRIPTION] isEqualToString:@""]) {
+                ivc.title = [self.photos[indexPath.row] valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
+            } else {
+                ivc.title = @"Unknown";
+            }
         }
     }
 }

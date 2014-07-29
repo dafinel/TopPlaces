@@ -23,26 +23,13 @@
 
 - (void)setPlaces:(NSArray *)places {
     _places = places;
+    _places = [MyFlickr sortPlaces:_places];
     self.placesByCountrie = [MyFlickr placesByContries:_places];
     self.countries = [MyFlickr countrieOfPlaces:self.placesByCountrie];
     [self.tableView reloadData];
 }
 
 #pragma mark -Initialization
-
-/*- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-- (void)awakeFromNib {
-    NSLog(@"Awake from nib");
-}
 
 - (void)viewDidLoad
 {
@@ -56,8 +43,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)fetchPhotos {
-    //[self.refreshControl beginRefreshing];
+- (IBAction)fetchPhotos {
+    [self.refreshControl beginRefreshing];
     NSURL *url = [FlickrFetcher URLforTopPlaces];
     dispatch_queue_t fetchQ = dispatch_queue_create("fetch flickr", NULL);
     dispatch_async(fetchQ, ^{
@@ -68,7 +55,7 @@
 
         NSArray *placesResult = [propertyList valueForKeyPath:FLICKR_RESULTS_PLACES];
         dispatch_async(dispatch_get_main_queue(), ^{
-            //[self.refreshControl endRefreshing];
+            [self.refreshControl endRefreshing];
             self.places = placesResult;
         });
         
@@ -111,44 +98,9 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    view.tintColor = [UIColor blueColor];
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark - Navigation
 
