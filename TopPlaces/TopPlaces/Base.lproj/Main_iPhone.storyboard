@@ -16,6 +16,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Iss-xP-Wn9" kind="relationship" relationship="viewControllers" id="c6K-hY-6CD"/>
+                        <segue destination="NMX-5K-gmQ" kind="relationship" relationship="viewControllers" id="L9h-bR-vge"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7SG-th-Twp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -74,7 +75,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yJB-De-Y7n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="548" y="-43"/>
+            <point key="canvasLocation" x="656" y="-63"/>
         </scene>
         <!--Photo For Place Table View Controller-->
         <scene sceneID="Bm3-Qs-iXO">
@@ -128,7 +129,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0b8-rH-4h6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="978" y="-43"/>
+            <point key="canvasLocation" x="1086" y="-63"/>
         </scene>
         <!--Image View Controller-->
         <scene sceneID="Nel-ay-hfG">
@@ -168,7 +169,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tgq-6j-9x6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1404" y="-46"/>
+            <point key="canvasLocation" x="1350" y="530"/>
         </scene>
         <!--Navigation Controller - Item-->
         <scene sceneID="dO1-ZD-VeC">
@@ -187,7 +188,74 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9r0-u4-Z9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="122" y="-43"/>
+            <point key="canvasLocation" x="226" y="-63"/>
+        </scene>
+        <!--Last Photo Table View Controller-->
+        <scene sceneID="Vkd-Fx-jdV">
+            <objects>
+                <tableViewController id="SQF-0E-58C" customClass="LastPhotoTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3zn-QF-uzE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Photo Cell" textLabel="0ic-jb-qzf" detailTextLabel="51I-UD-P69" style="IBUITableViewCellStyleSubtitle" id="dL6-Kl-2iX">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dL6-Kl-2iX" id="CNB-ru-siu">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0ic-jb-qzf">
+                                            <rect key="frame" x="15" y="3" width="34" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="51I-UD-P69">
+                                            <rect key="frame" x="15" y="25" width="43" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="y98-mE-VKx" kind="push" identifier="Last Photo" id="BN3-oD-MVG"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SQF-0E-58C" id="UB2-xG-wh1"/>
+                            <outlet property="delegate" destination="SQF-0E-58C" id="3ol-Cm-bF7"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="gmt-gP-swu"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gEZ-Zf-zS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="690" y="618"/>
+        </scene>
+        <!--Navigation Controller - Item-->
+        <scene sceneID="MwS-A8-Eds">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NMX-5K-gmQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="58G-CW-AQQ"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="M8C-BW-dD3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SQF-0E-58C" kind="relationship" relationship="rootViewController" id="XV5-mI-axu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cgp-MQ-LUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="164" y="618"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -195,4 +263,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="BN3-oD-MVG"/>
+    </inferredMetricsTieBreakers>
 </document>

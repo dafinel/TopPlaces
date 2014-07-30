@@ -8,7 +8,7 @@
 
 #import "ImageViewController.h"
 
-@interface ImageViewController () <UIScrollViewDelegate>
+@interface ImageViewController () <UIScrollViewDelegate,UISplitViewControllerDelegate>
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIImage *image;
@@ -55,7 +55,7 @@
 - (void)scaleToFit {
     CGFloat wscale = self.scrollView.bounds.size.width / self.imageView.image.size.width;
     CGFloat hscale = self.scrollView.bounds.size.height / self.imageView.image.size.height;
-    if (wscale > hscale ) {
+    if (wscale < hscale ) {
         self.scrollView.zoomScale = wscale;
     } else {
         self.scrollView.zoomScale = hscale;
@@ -115,6 +115,32 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.scrollView addSubview:self.imageView];
+}
+
+#pragma mark - UISplitViewControlorDelegate
+
+- (void)awakeFromNib {
+    self.splitViewController.delegate = self;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)svc
+   shouldHideViewController:(UIViewController *)vc
+              inOrientation:(UIInterfaceOrientation)orientation {
+    return UIInterfaceOrientationIsPortrait(orientation);
+}
+
+- (void)splitViewController:(UISplitViewController *)svc
+     willHideViewController:(UIViewController *)aViewController
+          withBarButtonItem:(UIBarButtonItem *)barButtonItem
+       forPopoverController:(UIPopoverController *)pc {
+    
+    barButtonItem.title =aViewController.title;
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+}
+
+- (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
+    
+    self.navigationItem.leftBarButtonItem = nil;
 }
 
 /*

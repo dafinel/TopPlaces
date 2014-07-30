@@ -8,6 +8,7 @@
 
 #import "PhotoTableViewController.h"
 #import "FlickrFetcher.h"
+#import "ImageViewController.h"
 
 @interface PhotoTableViewController ()
 
@@ -59,7 +60,6 @@
     
     return cell;
 }
-
 
 /*
 // Override to support conditional editing of the table view.
